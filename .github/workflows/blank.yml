@@ -1,0 +1,142 @@
+from typing import Type
+
+import numpy
+
+
+def isPrimeNum(targetNum):
+    txt1 = "{0} 是素数"
+    txt2 = "{0} 不是素数"
+    x = 0
+    for i in range(2, targetNum):
+        print(targetNum % i)
+        if targetNum % i == 0:
+            x = 1
+            print(txt2.format(targetNum))
+            break
+    if x == 0:
+        print(txt1.format(targetNum))
+
+
+def dltRepeatNum(targetList: list):
+    for i in range(0, len(targetList)):
+        for j in range(i + 1, len(targetList)):
+            if targetList[i] == targetList[j]:
+                targetList.remove(targetList[i])
+                i -= 1
+                break
+    print(targetList)
+
+
+def reverseStr(targetStr: str):
+    reverseList = ""
+    for i in range(1, len(targetStr) + 1):
+        reverseList = reverseList + targetStr[-i]
+        print(targetStr[-i])
+    print(reverseList)
+    return reverseList
+
+
+def commonDivisor(a: int, b: int):
+    Divisor = []
+    result = 1
+    for i in range(2, minNum(a, b) + 1):
+        if a % i == 0:
+            if b % i == 0:
+                a = a / i
+                b = b / i
+                Divisor.append(i)
+                print(i)
+    for i in range(0, len(Divisor)):
+        result = result * Divisor[i]
+    print("最大公约数{0}".format(result))
+
+
+def minNum(a, b):
+    """
+    :type a: int
+    :type b: int
+    """
+    if a > b:
+        return b
+    if a == b:
+        return b
+    if a < b:
+        return a
+
+
+def simpleSearch(key, targetList: list):
+    a = 0
+    for i in range(0, len(targetList)):
+        if key == targetList[i]:
+            a = 1
+            print("{0}在{1}列表里".format(key, targetList))
+    if a == 0:
+        print("不在")
+
+
+def midSearch(key, targetList: list):
+    bubbleSort(targetList)
+    for i in range(0, len(targetList)):
+        listS = midList(targetList)[0]
+        listB = midList(targetList)[1]
+        if key <= targetList[len(targetList) // 2 - 1]:
+            targetList = listS
+        else:
+            targetList = listB
+        print(targetList)
+        if len(targetList) == 1:
+            break
+    if targetList[0] == key:
+        print("{0}在{1}列表里".format(key, targetList))
+    else:
+        print("不在")
+
+
+def midList(targetList: list):
+    mid = len(targetList) // 2
+    listS = targetList[0:mid]
+    listB = targetList[mid + 1:len(targetList)]
+    return listS, listB
+
+
+def bubbleSort(targetList: list):
+    for j in range(0, len(targetList) - 1):
+        for i in range(0, len(targetList) - 1 - j):
+            if targetList[i] > targetList[i + 1]:
+                b = targetList[i]
+                targetList[i] = targetList[i + 1]
+                targetList[i + 1] = b
+
+    print(targetList)
+    return targetList
+
+
+def chooseSort(targetList: list, ):
+    for i in range(0, len(targetList)):
+        maxV = 0
+        for j in range(i, len(targetList)):
+            if maxV < targetList[j]:
+                maxV = targetList[j]
+                index = j
+        targetList[index] = targetList[i]
+        targetList[i] = maxV
+    print(targetList)
+
+
+def factorial(key):
+    total = 1
+    for i in range(key, 1, -1):
+        print(i)
+        total = total * key
+    print(total)
+    return total
+
+
+def main():
+    b = [20, 10, 40, 3, 10, 20, 30, 50, 40, 7, 8, 32, 54]
+    a = 5
+    factorial(a)
+
+
+if __name__ == '__main__':
+    main()
